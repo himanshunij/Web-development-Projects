@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Reaction Timer</title>
+      <style>
+         # body
+         {
+         font-family:Arial, Helvetica, sans-serif;
+         }
+         #redbox {
+         background-color: red;
+         display: none;
+         height: 200px;
+         width: 200px;
+         position: relative;
+         }
+		 
+		 .bold
+		 {
+			 font-weight:bold;
+			 
+			 }
+      </style>
+   </head>
+   <body>
+      <h1>Test Your Reactions!</h1>
+      Click on shapes as fast as possible
+      <p class="bold"> Your Time : <span id="timetaken"></span></p>
+      <div id="redbox"></div>
+      <script>
+         var start = new Date().getTime();
+         
+         
+         
+         function getRandomColor() {
+             var letters = '0123456789ABCDEF';
+             var color = '#';
+             for (var i = 0; i < 6; i++) {
+                 color += letters[Math.floor(Math.random() * 16)];
+             }
+             return color;
+         }
+         
+         
+         function shapeappear() {
+             var top = Math.random() * 400;
+             var left = Math.random() * 400;
+             var width = (Math.random() * 200)+ 100;
+         if (Math.random() > 0.5){
+         
+         document.getElementById("redbox").style.borderRadius="50%";	
+         } 
+         else {
+         document.getElementById("redbox").style.borderRadius="0";	
+         
+         }
+         
+         
+             document.getElementById("redbox").style.top = top + "px";
+             document.getElementById("redbox").style.height = width + "px";
+         
+             document.getElementById("redbox").style.left = left + "px";
+             document.getElementById("redbox").style.width = width + "px";
+         document.getElementById("redbox").style.backgroundColor=getRandomColor();
+         
+             document.getElementById("redbox").style.display = "block";
+         
+             start = new Date().getTime();
+         }
+         
+         function appearafterdeley() {
+             setTimeout(shapeappear, Math.random() * 2000);
+         
+         
+         }
+         
+         appearafterdeley();
+         
+         document.getElementById("redbox").onclick = function() {
+         
+             document.getElementById("redbox").style.display = "none";
+         
+             var end = new Date().getTime();
+             var timetaken = (end - start) / 1000;
+             document.getElementById("timetaken").innerHTML = timetaken + "" + "secs";
+             appearafterdeley();
+         }
+      </script>
+   </body>
+</html>
